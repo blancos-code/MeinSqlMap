@@ -15,12 +15,13 @@ def home():
 def search():
     if request.method == "POST":
         query = request.form.get("query")
+        start = request.form.get("start")
         if query:
             params = {
                 "q": query,
                 "key": API_KEY,
                 "cx": CX,
-                "start": 21
+                "start": start
             }
             response = requests.get(GOOGLE_SEARCH_API_ENDPOINT, params=params)
             results = response.json().get("items", [])

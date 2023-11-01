@@ -7,10 +7,33 @@
 <body>
     {% block body %}
         <h1>Faire une recherche</h1>
-        <form method="post" action="/search">
-            <input type="text" name="query" required>
-            <button type="submit">Rechercher</button>
-        </form>
+        <div class="container" style="padding-top:3%;">
+            <form method="post" action="/search">
+                <div class="row justify-content-center align-items-center g-2">
+                    <div class="col-8">
+                        <div class="mb-3">
+                          <label for="" class="form-label">Recherche: </label>
+                          <input type="text" class="form-control" name="query" id="" minlength="5" placeholder="Entrer la recherche google" required>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="mb-3">
+                            <label for="" class="form-label">Page de départ: </label>
+                            <input type="number" class="form-control" name="start" id="" min="1" max="100" placeholder="Numéro de la page de départ" required>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-right">
+                    <button type="submit" class="btn btn-primary">Rechercher</button>
+                </div>
+            </form>
+        </div>
+        
+            
+
+        
+        
+
     {% endblock body %}
     
 </body>
