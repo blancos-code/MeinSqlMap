@@ -27,24 +27,30 @@ def search():
 
 
 def get_results_from_google(page_count, query, results, start):
-
-    for page in range(int(start), int(start + page_count)):
+    for page in range(int(start), int(start) + int(page_count)):
         params = {
             "q": "inurl:" + query,
             "key": API_KEY,
             "cx": CX,
-            "start": page
+            "start": int(page)
         }
+        if page > int(start) + int(page_count):
+            print(page)
+            print(int(start))
+            print(int(page_count))
+            break
 
         response = requests.get(GOOGLE_SEARCH_API_ENDPOINT, params=params)
         items = response.json().get("items", [])
-        print(response.json())
         for item in items:
             result = {'url': item.get('link', '')}
             result['is_valid_for_pentesting'] = is_url_valid(result['url'])
             results.append(result)
 
+    print(results)
+
     return results
+
 
 def is_url_valid(url):
     query = session.get('query', '')
