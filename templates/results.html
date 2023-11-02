@@ -19,10 +19,17 @@
 
         socket.on('console_output', function(data) {
             var index = data.index;
+            var url = data.url;
             var output = data.data.replace(/\n/g, '<br>'); // Remplacez les sauts de ligne par des balises <br>
 
             // Trouvez l'élément pour afficher la console de cette URL spécifique
             var consoleElement = document.getElementById('console-' + index);
+            var urlElement = document.getElementById('url-' + index);
+
+            if (urlElement) {
+                urlElement.innerHTML = url;
+                urlElement.href = url;
+            }
             if (consoleElement) {
                 var preElement = consoleElement.querySelector('pre');
                 // Ajoutez la nouvelle ligne de sortie à la console
@@ -59,7 +66,7 @@
                 <div class="card mb-3">
                     <div class="card-body">
                         <h5 class="card-title">
-                            <a href="{{ result.url }}" target="_blank">{{ result.url }}</a>
+                            <a id="url-{{ loop.index0 }}" href="" target="_blank"></a>
                             <span class="badge badge-success ml-2">Valide pour le pentesting</span>
                         </h5>
                         <div class="console" id="console-{{ loop.index0 }}">

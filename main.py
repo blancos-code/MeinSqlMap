@@ -39,13 +39,15 @@ def results():
 def run_sqlmap(url, index):
     command = f"python sql_map/sqlmap.py -u {url} --batch -dbs"
     process = subprocess.Popen(shlex.split(command), stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True)
+
+    socketio.emit('console_output', {'data': url + "\n", 'index': index})
+
     while True:
         output = process.stdout.readline()
         if not output and process.poll() is not None:
             break
         if output:
-            print(output.strip())
-            socketio.emit('console_output', {'data': output.strip(), 'index': index})
+            socketio.emit('console_output', {'url': url,'data': output.strip(), 'index': index})
     rc = process.poll()
     return rc
 
