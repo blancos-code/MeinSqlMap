@@ -16,17 +16,16 @@ def search():
         page_count = request.form.get("page_count")
 
         if query:
-            results = []
+            websites_infos = []
+            websites_infos = get_websites_infos_from_google(page_count, query, websites_infos, start)
 
-            results = get_results_from_google(page_count, query, results, start)
-
-            session['results'] = results
+            session['results'] = websites_infos
             session['query'] = query
             return redirect(url_for('results'))
     return render_template("search.html")
 
 
-def get_results_from_google(page_count, query, results, start):
+def get_websites_infos_from_google(page_count, query, websites_infos, start):
     for page in range(int(start), int(start) + int(page_count)):
         params = {
             "q": "inurl:" + query,
@@ -41,16 +40,34 @@ def get_results_from_google(page_count, query, results, start):
             break
 
         response = requests.get(GOOGLE_SEARCH_API_ENDPOINT, params=params)
-        items = response.json().get("items", [])
-        for item in items:
-            result = {'url': item.get('link', '')}
-            result['is_valid_for_pentesting'] = is_url_valid(result['url'])
-            results.append(result)
+        websites = response.json().get("items", [])
+        for website in websites:
+            website_infos = {'url': website.get('link', '')}
 
-    return results
+            website_infos = update_websites_infos(website_infos)
+            websites_infos.append(website_infos)
+
+    return websites_infos
 
 
-def is_url_valid(url):
+def is_url_valid_for_pentesting(url, query):
+    return ('=' in url) or (("/" + query + "/") in url)
+
+
+def update_websites_infos(website_infos):
     query = session.get('query', '')
 
-    return ('=' in url) or (("/" + query + "/") in url)
+    website_infos['is_valid_for_pentesting'] = is_url_valid_for_pentesting(website_infos['url'], query)
+    website_infos['url'] = couper_url(website_infos['url'], query)
+
+    return website_infos
+
+
+def couper_url(url, query):
+    index = url.find("/" + query + "/")
+    if index == -1:
+        return url
+
+    nouvelle_url = url[:index + len(query) + 2] + '*'
+
+    return nouvelle_url
