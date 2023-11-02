@@ -47,8 +47,6 @@ def get_results_from_google(page_count, query, results, start):
             result['is_valid_for_pentesting'] = is_url_valid(result['url'])
             results.append(result)
 
-    print(results)
-
     return results
 
 

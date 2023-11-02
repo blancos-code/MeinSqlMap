@@ -8,54 +8,8 @@
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.0/socket.io.js"></script>
-    <script type="text/javascript" charset="utf-8">
-      document.addEventListener("DOMContentLoaded", function () {
-        var socket = io.connect('http://' + document.domain + ':' + location.port);
-
-        socket.on('connect', function() {
-          // Ici, vous pourriez envoyer les URLs à scanner au serveur.
-          // Cependant, dans ce cas, le serveur démarre les scans dans la route /results.
-        });
-
-        socket.on('console_output', function(data) {
-            var index = data.index;
-            var url = data.url;
-            var output = data.data.replace(/\n/g, '<br>'); // Remplacez les sauts de ligne par des balises <br>
-
-            // Trouvez l'élément pour afficher la console de cette URL spécifique
-            var consoleElement = document.getElementById('console-' + index);
-            var urlElement = document.getElementById('url-' + index);
-
-            if (urlElement) {
-                urlElement.innerHTML = url;
-                urlElement.href = url;
-            }
-            if (consoleElement) {
-                var preElement = consoleElement.querySelector('pre');
-                // Ajoutez la nouvelle ligne de sortie à la console
-                preElement.innerHTML += output + '<br>'; // Ajoutez un saut de ligne après chaque sortie
-
-                // Faites défiler jusqu'en bas pour voir la dernière ligne
-                preElement.scrollTop = preElement.scrollHeight;
-            }
-        });
-      });
-    </script>
-    <style>
-      .console pre {
-        color: #00ff00;
-        background-color: #000;
-        padding: 10px;
-        border: none;
-        border-radius: 4px;
-        font-family: 'Courier New', Courier, monospace;
-        white-space: pre-wrap;
-        word-wrap: break-word;
-        overflow: auto;
-        margin: 0;
-      }
-    </style>
-
+    <script src="{{ url_for('static', filename='js/console.js') }}"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/console.css') }}">
 </head>
 <body>
     {% include "header.html" %}

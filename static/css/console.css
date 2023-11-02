@@ -1,0 +1,12 @@
+.console pre {
+    color: #00ff00;
+    background-color: #000;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    font-family: 'Courier New', Courier, monospace;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    overflow: auto;
+    margin: 0;
+}
