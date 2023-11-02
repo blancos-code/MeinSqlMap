@@ -19,7 +19,7 @@
             {% if result.is_valid_for_pentesting %}
               <div class="accordion-item">
                 <h2 class="accordion-header" id="flush-heading{{ loop.index0 }}">
-                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse{{ loop.index0 }}" aria-expanded="false" aria-controls="flush-collapse{{ loop.index0 }}">
+                  <button class="accordion-button collapsed bg-light" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse{{ loop.index0 }}" aria-expanded="false" aria-controls="flush-collapse{{ loop.index0 }}">
                       <div class="mb-2">
                         <a id="url-{{ loop.index0 }}"></a>
                       </div>
@@ -41,7 +41,7 @@
     <div class="accordion accordion-flush" id="accordionUrlsNonValides">
       <div class="accordion-item">
         <h2 class="accordion-header" id="flush-headingTwo">
-          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+          <button class="accordion-button collapsed bg-warning" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
             Urls non valides pour le pentesting
           </button>
         </h2>

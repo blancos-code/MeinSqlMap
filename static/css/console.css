@@ -7,7 +7,7 @@
     font-family: 'Courier New', Courier, monospace;
     white-space: pre-wrap;
     word-wrap: break-word;
-    max-height: 300px; /* ou la hauteur que vous préférez */
-    overflow-y: auto; /* activez le défilement vertical si le contenu dépasse la hauteur */
-    margin-bottom: 20px; /* optionnel: ajoutez une marge en bas */
+    max-height: 300px;
+    overflow-y: auto;
+    margin-bottom: 20px;
 }
