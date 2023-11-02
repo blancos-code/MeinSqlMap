@@ -1,6 +1,7 @@
 from flask import Flask, render_template, session
 from flask_socketio import SocketIO
 from controller.search_controller import search_blueprint
+from controller.bdd_controller import create_connection_blueprint
 import threading
 import subprocess
 import shlex
@@ -12,6 +13,7 @@ app.config['SECRET_KEY'] = 'secret!'
 socketio = SocketIO(app)
 
 app.register_blueprint(search_blueprint)
+app.register_blueprint(create_connection_blueprint)
 
 
 @app.route("/")
@@ -37,7 +39,7 @@ def results():
 
 
 def run_sqlmap(url, index):
-    command = f"python sql_map/sqlmap.py -u {url} --batch -dbs"
+    command = f"python3 sql_map/sqlmap.py -u {url} --batch -dbs"
     process = subprocess.Popen(shlex.split(command), stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True)
 
     socketio.emit('console_output', {'data': url + "\n", 'index': index})
