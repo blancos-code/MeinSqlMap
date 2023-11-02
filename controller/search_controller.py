@@ -4,8 +4,8 @@ import requests
 search_blueprint = Blueprint('search', __name__)
 
 GOOGLE_SEARCH_API_ENDPOINT = "https://www.googleapis.com/customsearch/v1"
-API_KEY = "AIzaSyCvl-lGhRJ12dYAnhAr1HgKdWmINWABus8"
-CX = "57447145afad04e1b"
+API_KEY = "AIzaSyBkyDVIntg2fkRT8d-ROxoeMa2GKEcv8gI"
+CX = "509596f2cacfb4f10"
 
 
 @search_blueprint.route("/search", methods=["GET", "POST"])
