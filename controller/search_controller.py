@@ -13,6 +13,7 @@ def search():
     if request.method == "POST":
         query = request.form.get("query")
         start = request.form.get("start")
+
         if query:
             params = {
                 "q": "inurl:" + query,
@@ -26,7 +27,7 @@ def search():
             results = []
             for item in items:
                 result = {'url': item.get('link', '')}
-                result['isValidForPentesting'] = is_url_valid(result['url'])
+                result['is_valid_for_pentesting'] = is_url_valid(result['url'])
                 results.append(result)
 
             session['results'] = results

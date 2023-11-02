@@ -31,7 +31,7 @@ def handle_start_scan(data):
 def results():
     search_results = session.get('results', [])
     for index, result in enumerate(search_results):
-        if result['isValidForPentesting']:
+        if result['is_valid_for_pentesting']:
             handle_start_scan({'url': result['url'], 'index': index})
     return render_template("results.html", results=search_results)
 
