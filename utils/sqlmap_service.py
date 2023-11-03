@@ -15,8 +15,6 @@ def run_sqlmap(url, index, socketio):
     command = f"py sql_map/sqlmap.py -u {url} --batch -dbs"
     process = subprocess.Popen(shlex.split(command), stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True)
 
-    socketio.emit('console_output', {'data': url + "\n", 'index': index})
-
     while True:
         output = process.stdout.readline()
         if not output and process.poll() is not None:
