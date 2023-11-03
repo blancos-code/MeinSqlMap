@@ -1,0 +1,19 @@
+.btn-search-home{
+    width: fit-content;
+}
+
+
+  
+  #loading {
+    text-align: center;
+  }
+  
+  .glow {
+    color: #f00;
+    text-shadow: 0px 0px 10px #f00;
+  }
+  
+  span {
+    display: inline-block;
+    padding: 0 10px;
+  }
