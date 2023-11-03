@@ -47,7 +47,19 @@ def run_sqlmap(url, index):
         if not output and process.poll() is not None:
             break
         if output:
-            socketio.emit('console_output', {'url': url,'data': output.strip(), 'index': index})
+            if output:
+                output = output.strip()
+                if 'CRITICAL' in output:
+                    sql_map_state = 'failure'
+                elif 'available databases' in output:
+                    sql_map_state = 'success'
+                else:
+                    sql_map_state = 'loading'
+
+                socketio.emit('console_output',
+                              {'url': url, 'data': output, 'index': index, 'sql_map_state': sql_map_state})
+
+            socketio.emit('console_output', {'url': url,'data': output.strip(), 'index': index, 'sql_map_state': sql_map_state})
     rc = process.poll()
     return rc
 
