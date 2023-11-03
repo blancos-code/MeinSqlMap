@@ -34,7 +34,8 @@ def create_database_tables():
     """)
     cursor.execute("""
         CREATE TABLE IF NOT EXISTS historique (
-            recherche text PRIMARY KEY,
+            id integer PRIMARY KEY AUTOINCREMENT,
+            recherche text,
             page_depart integer NOT NULL,
             nb_requete integer NOT NULL,
             date_recherche DATE DEFAULT (date('now')),
