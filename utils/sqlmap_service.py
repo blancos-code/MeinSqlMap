@@ -20,7 +20,7 @@ def run_sqlmap(url, index, socketio):
         if not output and process.poll() is not None:
             break
 
-        display_to_console(output, socketio, url, index)
+        sql_map_state = display_to_console(output, socketio, url, index)
 
     rc = process.poll()
     return rc
