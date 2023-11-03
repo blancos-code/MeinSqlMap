@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Résultats</title>
-    <link rel="stylesheet" href="./stylesheets/results.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/results.css') }}">
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.0/socket.io.js"></script>
@@ -14,34 +14,50 @@
 </head>
 <body>
     {% include "header.html" %}
-    <div class="container mt-4">
-        <h1>Résultats</h1>
+    <div class="accordion accordion-flush" id="accordionUrlsValides">
         {% for result in results %}
             {% if result.is_valid_for_pentesting %}
-                <div class="card mb-3">
-                    <div class="card-body">
-                        <h5 class="card-title">
-                            <a id="url-{{ loop.index0 }}" href="" target="_blank"></a>
-                            <span class="badge badge-success ml-2">Valide pour le pentesting</span>
-                        </h5>
-                        <div class="console" id="console-{{ loop.index0 }}">
-                            <pre></pre>
-                        </div>
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="flush-heading{{ loop.index0 }}">
+                  <button class="accordion-button collapsed bg-light" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse{{ loop.index0 }}" aria-expanded="false" aria-controls="flush-collapse{{ loop.index0 }}">
+                      <div class="mb-2">
+                        <a id="url-{{ loop.index0 }}"></a>
+                      </div>
+                  </button>
+                </h2>
+                <div id="flush-collapse{{ loop.index0 }}" class="accordion-collapse collapse" aria-labelledby="flush-heading{{ loop.index0 }}" data-bs-parent="#accordionUrlsValides">
+                  <div class="accordion-body">
+                    <div class="console" id="console-{{ loop.index0 }}">
+                        <pre></pre>
                     </div>
+                  </div>
                 </div>
+              </div>
             {% endif %}
         {% endfor %}
-        <h2 class="mt-4">Résultats non valides pour le pentesting</h2>
-        <div>
+    </div>
+
+
+    <div class="accordion accordion-flush" id="accordionUrlsNonValides">
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="flush-headingTwo">
+          <button class="accordion-button collapsed bg-warning" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+            Urls non valides pour le pentesting
+          </button>
+        </h2>
+        <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionUrlsNonValides">
+          <div class="accordion-body">
             {% for result in results %}
-                {% if not result.isValidForPentesting %}
+                {% if not result.is_valid_for_pentesting %}
                     <div class="mb-2">
                         <a href="{{ result.url }}" target="_blank">{{ result.url }}</a>
                         <span class="badge badge-danger ml-2">Non valide pour le pentesting</span>
                     </div>
                 {% endif %}
             {% endfor %}
+          </div>
         </div>
+      </div>
     </div>
 </body>
 </html>
