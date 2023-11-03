@@ -28,4 +28,4 @@ def getData():
 def display():
     data = getData()
     print(data)
-    return render_template("database.html", database_data = data, historique=data['historique'])
+    return render_template("database.html", database_data = data, historique=data['historique'], site=data['site'])
