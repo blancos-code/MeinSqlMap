@@ -42,7 +42,7 @@ word = el.html().trim();
 finished = false;
 
 el.html("");
-for (var i = 1; i < word.length; i++) {
+for (var i = 1; i <= word.length; i++) {
   el.append("<span>" + word.charAt(i) + "</span>");
 }
 
@@ -60,10 +60,10 @@ function write() {
 }
 
 function inc() {
-  $("span")[letter_count].innerHTML = word[letter_count];
+  $("span")[letter_count].innerHTML = word[letter_count-1];
   $("span:eq(" + letter_count + ")").addClass("glow");
   letter_count++;
-  if (letter_count >= word.length) {
+  if (letter_count > word.length) {
     finished = true;
     setTimeout(reset, 1500);
   } else {

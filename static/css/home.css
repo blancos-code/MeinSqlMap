@@ -2,15 +2,12 @@
     width: fit-content;
 }
 
-
-  
   #loading {
     text-align: center;
   }
   
   .glow {
     color: rgb(23, 153, 11);
-    text-shadow: 0px 0px 10px rgb(23, 153, 11);
   }
   
   span {
