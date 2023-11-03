@@ -47,7 +47,7 @@ for (var i = 0; i < word.length; i++) {
 }
 
 setTimeout(write, 75);
-incrementer = setTimeout(inc, 1000);
+incrementer = setTimeout(inc, 250);
 
 function write() {
   for (var i = letter_count; i < word.length; i++) {
@@ -67,7 +67,7 @@ function inc() {
     finished = true;
     setTimeout(reset, 1500);
   } else {
-    setTimeout(inc, 1000);
+    setTimeout(inc, 500);
   }
 }
 
