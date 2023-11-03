@@ -21,7 +21,7 @@ def search():
 
             session['results'] = websites_infos
             session['query'] = query
-            return redirect(url_for('results'))
+            return redirect(url_for('results.results'))
     return render_template("search.html")
 
 

@@ -12,6 +12,15 @@ document.addEventListener("DOMContentLoaded", function () {
     var output = data.data.replace(/\n/g, '<br>');
     var sql_map_state = data.sql_map_state;
 
+    if (sql_map_state == 'success') {
+        var sqlMapElement = document.getElementById('sqlmap-state-' + index);
+
+    } else if (sql_map_state == 'failure') {
+        var sqlMapElement = document.getElementById('sqlmap-state-' + index);
+        sqlMapElement.className = "spinner-grow spinner-grow-sm text-danger";
+        console.log('de ouf failure');
+    }
+    console.log(sql_map_state);
 
     var a = document.createElement('a');
     a.href = url;

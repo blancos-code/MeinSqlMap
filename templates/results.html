@@ -23,9 +23,10 @@
                       <div class="mb-2">
                         <a id="url-{{ loop.index0 }}"></a>
                       </div>
-                      <div class="spinner-border spinner-border-sm text-primary" style="position: absolute; right: 3em;" role="status">
+                      <div id="sqlmap-state-{{ loop.index0 }}" class="spinner-border spinner-border-sm text-primary" style="position: absolute; right: 3em;" role="status">
                         <span class="visually-hidden">Loading...</span>
                       </div>
+
                   </button>
                 </h2>
                 <div id="flush-collapse{{ loop.index0 }}" class="accordion-collapse collapse" aria-labelledby="flush-heading{{ loop.index0 }}" data-bs-parent="#accordionUrlsValides">
