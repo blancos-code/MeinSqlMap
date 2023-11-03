@@ -10,6 +10,8 @@ document.addEventListener("DOMContentLoaded", function () {
     var index = data.index;
     var url = data.url;
     var output = data.data.replace(/\n/g, '<br>');
+    var sql_map_state = data.sql_map_state;
+
 
     var a = document.createElement('a');
     a.href = url;
