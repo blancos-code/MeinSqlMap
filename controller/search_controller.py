@@ -1,5 +1,6 @@
 from flask import Blueprint, render_template, request, redirect, url_for, session
 import requests
+from utils import bdd_service as database
 
 search_blueprint = Blueprint('search', __name__)
 
@@ -21,6 +22,9 @@ def search():
 
             session['results'] = websites_infos
             session['query'] = query
+
+            database.insert_historique(query,start,page_count)
+            
             return redirect(url_for('results.results'))
     return render_template("search.html")
 
