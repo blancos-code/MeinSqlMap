@@ -12,7 +12,7 @@ def handle_start_scan(data, socketio):
 
 
 def run_sqlmap(url, index, socketio):
-    command = f"python3 sql_map/sqlmap.py -u {url} --batch -dbs"
+    command = f"python sql_map/sqlmap.py -u {url} --batch -dbs"
     process = subprocess.Popen(shlex.split(command), stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True)
 
     while True:
