@@ -1,8 +1,9 @@
 from flask import Flask, render_template
 
-from controller.bdd_controller import create_connection_blueprint
 from controller.search_controller import search_blueprint
 from controller.results_controller import results_blueprint, socketio
+from controller.bdd_controller import database_blueprint
+from utils.bdd_service import create_database_tables
 
 
 app = Flask(__name__)
@@ -11,11 +12,11 @@ app.secret_key = 'super_secret'
 app.config['SECRET_KEY'] = 'secret!'
 
 app.register_blueprint(search_blueprint)
-app.register_blueprint(create_connection_blueprint)
 app.register_blueprint(results_blueprint)
+app.register_blueprint(database_blueprint)
 
 socketio.init_app(app)
-
+create_database_tables()
 
 @app.route("/")
 def home():
