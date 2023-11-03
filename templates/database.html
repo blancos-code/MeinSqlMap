@@ -1,10 +1,42 @@
-<h1>DATABASE</h1>
-<h2>Historique</h2>
-{% for row in historique %}
-    {{row}}
-{% endfor %}
+{% include "header.html" %}
 
-<h2>Sites</h2>
-{% for row in site %}
-    {{row}}
-{% endfor %}
+<body>
+    <div style="position: relative;">
+        <canvas style="position: absolute; top: 0; left: 0; z-index: 1;">
+            <!-- Votre code de dessin WebGL ou 2D ici -->
+        </canvas>
+        
+        <div style="position: relative; z-index: 2;">
+            <h1 style="color:white;">DATABASE</h1>
+
+            <h2 style="color:white;">Historique</h2>
+            <div class="row row-cols-1 row-cols-md-4 g-4" style="margin-right:30px; margin-left:30px;">
+                {% for row in historique %}
+                    <div class="card h-100" style="margin-right:15px; margin-left:30px;">
+                        <div class="card-body" >
+                            <p><strong>Recherche:</strong> {{ row.1 }}</p>
+                            <p><strong>Page de départ:</strong> {{ row.2 }}</p>
+                            <p><strong>Nombre de site:</strong> {{ row.3*10 }}</p>
+                            <p><strong>Date:</strong> {{ row.4 }}</p>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+
+
+            <h2 style="color:white;">Sites</h2>
+            <div class="row row-cols-1 row-cols-md-4 g-4" style="margin-right:30px; margin-left:30px;">
+                {% for row in site %}
+                    <div class="card h-100" style="margin-right:15px; margin-left:30px;">
+                        <div class="card-body" >
+                            <p><strong>Url: </strong>{{ row.0 }}</p>
+                            <p><strong>Nom de domaine: </strong>{{ row.1 }}</p>
+                            <p><strong>Site vulnérables : </strong>{{ row.2 }}</p>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</body>
+<script src="{{ url_for('static', filename='js/hacker.js') }}"></script>

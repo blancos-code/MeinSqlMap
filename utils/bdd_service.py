@@ -38,8 +38,7 @@ def create_database_tables():
             recherche text,
             page_depart integer NOT NULL,
             nb_requete integer NOT NULL,
-            date_recherche DATE DEFAULT (date('now')),
-            temps TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+            date_recherche TIMESTAMP DEFAULT CURRENT_TIMESTAMP
         );
     """)
 
@@ -64,7 +63,16 @@ def insert_site(url, nom_de_domaine):
             cursor.close()
 
 
-
+def isInDatabase(table: str, element):
+    conn = sqlite3.connect('data/bdd.db')  # Modifiez ceci pour le chemin de votre base de données
+    cursor = conn.cursor()
+    cursor.execute(f"SELECT * FROM {table}")  # Sélectionne tous les éléments de la table
+    rows = cursor.fetchall()
+    conn.close()
+    for row in rows:
+        if element in row:  # Vérifie si l'élément est dans la rangée
+            return True
+    return False  # L'élément n'a pas été trouvé dans la table 
 
 def insert_historique(recherche,page_depart,nb_requete):
     conn = sqlite3.connect('data/bdd.db')
