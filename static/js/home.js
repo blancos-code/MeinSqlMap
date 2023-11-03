@@ -42,7 +42,7 @@ word = el.html().trim();
 finished = false;
 
 el.html("");
-for (var i = 0; i < word.length; i++) {
+for (var i = 1; i < word.length; i++) {
   el.append("<span>" + word.charAt(i) + "</span>");
 }
 
