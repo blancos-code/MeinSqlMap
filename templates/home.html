@@ -4,29 +4,40 @@
     {% include "header.html" %}
     <title>Ma Page Web</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    
-            
+
+
     <div style="position: relative;">
-        <canvas style="position: absolute; top: 0; left: 0; z-index: 1;">
+        <canvas style="position: absolute; top: 0; left: 0; z-index: 1; ">
             <!-- Votre code de dessin WebGL ou 2D ici -->
         </canvas>
-    
+
         <!-- Placez votre contenu ici -->
         {% block content %}
             <div style="position: relative; z-index: 2;">
                 <div class="container-md mt-4" style="padding-top:3%;">
-                    <div id="loading" class="mt-5">BIENVENUE</div>
-                    <div class="row justify-content-center align-items-center g-2">
-                        <div class="petit_chat" style="margin-right:170px; margin-top:50px;"></div>
-                    </div>
-                    <a href="/search" style="width: fit-content; padding-top:170px;" class="btn btn-light mx-auto d-flex btn-search-home mt-4 text-dark">Faire une recherche !</a>
-                </div> 
+                      <div class="err-container">
+                        <span class="err-junk">:: SELECT * FROM </span><span class="err-junk" style="color: #626262;">USER</span><span class="err-junk"> ::</span>
+                        <br>
+                        <br>
+                        <span class="err-status">WHERE </span><span class="err-statuscode"> NAME = 'ADMIN'</span>
+                        <br><br><br><br><br>
+                        <span class="err-error">MEIN SQL MAP</span>
+                        <hr>
+                        <span class="err-boxed" style="color: #B4100B; letter-spacing: normal;"><b>E</b></span><span class="err-boxed wht">401‏‏‎ : ‎‎Unauthorized</span><span class="err-boxed red"></span><span class="err-boxed"> ‏‏‎ ‎‎ ‏‏‎ ‎‎ ‏‏‎ ‎‎</span>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <a href="/search" class="err-link">[start_searching]</a>
+                      </div>
+                </div>
             </div>
         {% endblock %}
     </div>
-    
+
 </body>
 <script src="{{ url_for('static', filename='js/home.js')}}"></script>
 <script src="{{ url_for('static', filename='js/hacker.js') }}"></script>
