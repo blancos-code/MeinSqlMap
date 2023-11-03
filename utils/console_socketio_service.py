@@ -15,4 +15,4 @@ def display_to_console(sql_map_output: str, socketio: SocketIO, url: str, index:
         socketio.emit('console_output',
                       {'url': url, 'data': sql_map_output, 'index': index, 'sql_map_state': sql_map_state})
 
-     return sql_map_state
+    return sql_map_state
