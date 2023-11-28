@@ -2,6 +2,10 @@ $green: rgba(23, 153, 11,1);
 $white: #FFFFFF;
 $black: #000000;
 $red: #ff0000;
+
+h1, h2{
+  font-family: 'Rajdhani';
+}
 .background-hacker{
   position: fixed; top: 0; left: 0; z-index: 1;
 }
