@@ -52,6 +52,7 @@ def insert_site(url, nom_de_domaine):
                 INSERT INTO `site` (`url`, `nom_de_domaine`, `isVulnerable`) VALUES
                            """ + '("' + url + '", "' + nom_de_domaine + '",' + '0' + ');')
             conn.commit()
+            print("Ajoute effectué avec succès: "+url+ " / "+nom_de_domaine)
             break
         except sqlite3.OperationalError as e:
             if "locked" in str(e):
