@@ -1,6 +1,13 @@
 body {
   overflow-x: hidden;
 }
+.background-hacker{
+  position: fixed; top: 0; left: 0; z-index: 1;
+}
+
+.relative{
+  position: relative;
+}
 
 .btn-search-home{
     width: fit-content;

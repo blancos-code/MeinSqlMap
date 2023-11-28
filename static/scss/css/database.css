@@ -1,0 +1,99 @@
+.background-hacker {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
+
+.relative {
+  position: relative;
+}
+
+.container {
+  position: relative;
+  z-index: 2;
+  padding-top: 2rem;
+}
+
+.carte_hacker {
+  background-color: #000000;
+  color: #FFFFFF;
+  border: 2px solid rgb(23, 153, 11);
+}
+
+.carte_site {
+  width: 25%;
+}
+
+/* Pagination links */
+.pagination a {
+  color: #000000;
+  float: left;
+  padding: 8px 16px;
+  text-decoration: none;
+  transition: background-color 0.3s;
+}
+
+/* Style the active/current link */
+.pagination a.active {
+  background-color: rgb(23, 153, 11);
+  color: #FFFFFF;
+}
+
+/* Add a grey background color on mouse-over */
+.pagination a:hover:not(.active) {
+  background-color: #FFFFFF;
+}
+
+a.err-link {
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 1em;
+  font-family: "Rajdhani";
+  font-weight: 500;
+  color: white;
+  letter-spacing: 10px;
+  text-decoration: none;
+}
+
+a.err-link:hover {
+  text-transform: uppercase;
+  font-size: 1em;
+  font-family: "Rajdhani";
+  font-weight: 500;
+  color: rgba(233, 207, 10, 0.8980392157);
+  letter-spacing: 10px;
+}
+
+.table {
+  margin-top: 2rem;
+  background-color: #FFFFFF;
+  border-radius: 5px;
+  margin-bottom: 5rem;
+}
+.table .td {
+  text-align: left;
+}
+.table .td-button {
+  width: 8rem;
+}
+.table .btn-action-database {
+  color: #FFFFFF;
+  padding: 5px;
+  margin: 5px;
+  box-shadow: none;
+  border-color: rgb(23, 153, 11);
+  background-color: rgb(23, 153, 11);
+  border-radius: 8px;
+}
+.table .btn-success {
+  background-color: rgb(23, 153, 11);
+}
+.table .text-red {
+  color: #ff0000;
+}
+.table .text-green {
+  color: rgb(23, 153, 11);
+}
+
+/*# sourceMappingURL=database.css.map */

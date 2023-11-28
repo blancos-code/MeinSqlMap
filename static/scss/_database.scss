@@ -1,20 +1,21 @@
-@use "@material/icon-button"; // Required only for data table with column sorting.
-@use "@material/data-table/data-table";
-
-@include checkbox.core-styles;
-@include icon-button.core-styles;
-@include data-table.core-styles;
-@include data-table.theme-baseline;
-
+$green: rgba(23, 153, 11,1);
+$white: #FFFFFF;
+$black: #000000;
+$red: #ff0000;
 .background-hacker{
-  position: absolute; top: 0; left: 0; z-index: 1;
+  position: fixed; top: 0; left: 0; z-index: 1;
+}
+.relative{
+  position: relative;
+}
+.container{
+  position: relative; z-index: 2;
+  padding-top: 2rem;
 }
 .carte_hacker{
-  /* margin-right:15px; 
-  margin-left:30px;  */
-  background-color:rgba(20,20,20,0.8); 
-  color:white;
-  border: 2px solid rgba(23, 153, 11,1);
+  background-color:$black; 
+  color:$white;
+  border: 2px solid $green;
 }
 
 .carte_site{
@@ -22,7 +23,7 @@
 }
 /* Pagination links */
 .pagination a {
-  color: black;
+  color: $black;
   float: left;
   padding: 8px 16px;
   text-decoration: none;
@@ -31,9 +32,65 @@
 
 /* Style the active/current link */
 .pagination a.active {
-  background-color: dodgerblue;
-  color: white;
+  background-color: $green;
+  color: $white;
 }
 
 /* Add a grey background color on mouse-over */
-.pagination a:hover:not(.active) {background-color: #ddd;}
+.pagination a:hover:not(.active) {background-color: $white;}
+a.err-link {
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 1em;
+  font-family: 'Rajdhani';
+  font-weight: 500;
+  color: white;
+  letter-spacing: 10px;
+  text-decoration: none;
+
+}
+
+a.err-link:hover{
+  text-transform: uppercase;
+  font-size: 1em;
+  font-family: 'Rajdhani';
+  font-weight: 500;
+  color: #e9cf0ae5;
+  letter-spacing: 10px;
+}
+
+.table{
+  margin-top: 2rem;
+  background-color: $white;
+  border-radius: 5px;
+  margin-bottom: 5rem;
+
+  .td{
+    text-align: left;
+  }
+
+  .td-button{
+    width: 8rem;
+  }
+
+  .btn-action-database{
+    color: $white;
+    padding: 5px;
+    margin: 5px;
+    box-shadow: none;
+    border-color: $green;
+    background-color: $green;
+    border-radius: 8px;
+  }
+
+  .btn-success{
+    background-color: $green;
+  }
+
+  .text-red{
+    color: $red;
+  }
+  .text-green{
+    color:$green;
+  }
+}
