@@ -6,15 +6,17 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='scss/css/search.css') }}">
 </head>
 <body>
-    {% block body %}
-        
+    <div class="relative">
+        <canvas class="background-hacker">
+        </canvas>
         <div class="container-md mt-4" style="padding-top:3%;">
-            <h1 class="text-center text-dark">Faire une recherche</h1>
-            <form method="post" action="/search">
+            <h1 class="text-center text-white">Faire une recherche</h1>
+            <a href="/" class="err-link mb-5">[home]</a>
+            <form method="post" action="/search" class="text-white">
                 <div class="row justify-content-center align-items-center g-2">
                     <div class="col-8">
                         <div class="mb-3">
-                          <label for="" class="form-label text-dark">Recherche :</label>
+                          <label for="" class="form-label">Recherche :</label>
                           <input type="text" class="form-control" name="query"  minlength="1" placeholder="Entrer la recherche google" required>
                         </div>
                     </div>
@@ -24,13 +26,13 @@
                     
                     <div class="col-4">
                         <div class="mb-3">
-                            <label for="" class="form-label text-dark">N° de la page de la recherche google :</label>
+                            <label for="" class="form-label">N° de la page de la recherche google :</label>
                             <input type="number" class="form-control" name="start"  min="1" max="100" placeholder="Numéro de la page" required>
                         </div>
                     </div>
                     <div class="col-4">
                         <div class="mb-3">
-                            <label for="" class="form-label text-dark">Nombre de requêtes (1 pour 10 url) :</label>
+                            <label for="" class="form-label">Nombre de requêtes (1 pour 10 url) :</label>
                             <input type="number" class="form-control" name="page_count"  min="1" max="100" placeholder="Nombre de requêtes" required>
                         </div>
                     </div>
@@ -43,7 +45,10 @@
                 </div>
             </form>
         </div>
-    {% endblock body %}
+    </div>
+        
+       
     
 </body>
+<script src="{{ url_for('static', filename='js/hacker.js')}}"></script>
 </html>
