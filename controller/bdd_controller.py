@@ -1,6 +1,7 @@
 from flask import Blueprint, render_template, request, redirect, url_for, session
 import sqlite3
 
+
 database_blueprint = Blueprint('database_blueprint', __name__)
 
 
@@ -21,7 +22,12 @@ def getData():
 
 
 @database_blueprint.route("/database", methods=["GET", "POST"])
-def display():
+@database_blueprint.route("/database/<int:page>", methods=["GET", "POST"])
+def display(page=1):
     data = getData()
-    print(data)
-    return render_template("database.html", database_data = data, historique=data['historique'], site=data['site'])
+    items_per_page = 6
+    page_start_historique = (page - 1) * items_per_page
+    page_end_historique = page_start_historique + items_per_page
+    historique_data = data['historique'][page_start_historique:page_end_historique]
+
+    return render_template("database.html", database_data=data, site=data['site'], historique=historique_data)

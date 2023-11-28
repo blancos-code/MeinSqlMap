@@ -1,37 +1,56 @@
 {% include "header.html" %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/database.css') }}">
 
 <body>
     <div style="position: relative;">
         <canvas style="position: absolute; top: 0; left: 0; z-index: 1;">
-            <!-- Votre code de dessin WebGL ou 2D ici -->
         </canvas>
         
-        <div style="position: relative; z-index: 2;">
-            <h1 style="color:white;">DATABASE</h1>
+        <div class="container" style="position: relative; z-index: 2;">
+            <h1 style="color:white; text-align:center; padding-top:3%; margin-bottom:5%;">DATABASE</h1>
 
             <h2 style="color:white;">Historique</h2>
-            <div class="row row-cols-1 row-cols-md-4 g-4" style="margin-right:30px; margin-left:30px;">
-                {% for row in historique %}
-                    <div class="card h-100" style="margin-right:15px; margin-left:30px;">
-                        <div class="card-body" >
+            <div class="row row-cols-1 row-cols-md-4 g-4" style="margin-right:30px; margin-left:30px; margin-bottom:5%;">
+                {% set items_per_page = 7 %}
+                {% set current_page = request.args.get('page', 1)|int %}
+                {% set page_start_historique = (current_page - 1) * items_per_page %}
+                
+                {% for row in historique[page_start_historique:(page_start_historique + items_per_page)] %}
+                    <div class="card h-100 carte_hacker">
+                        <div class="card-body">
                             <p><strong>Recherche:</strong> {{ row.1 }}</p>
                             <p><strong>Page de départ:</strong> {{ row.2 }}</p>
                             <p><strong>Nombre de site:</strong> {{ row.3*10 }}</p>
                             <p><strong>Date:</strong> {{ row.4 }}</p>
                         </div>
+                        <div class="row justify-content-center align-items-center g-2" style="margin-top:-25px;margin-bottom:10px;">
+                            <button type="button" class="col btn btn-warning" style="margin-right:5px;">Editer</button>
+                            <button type="button" class="col btn btn-danger">Supprimer</button>
+                        </div>
+                        
                     </div>
-                {% endfor %}
+                {% endfor %}                
             </div>
-
+            <div class="pagination">
+                <a href="{{ url_for('database_blueprint.display', page=1) }}">1</a>
+                <a href="{{ url_for('database_blueprint.display', page=2) }}">2</a>
+            </div>
+            
 
             <h2 style="color:white;">Sites</h2>
             <div class="row row-cols-1 row-cols-md-4 g-4" style="margin-right:30px; margin-left:30px;">
                 {% for row in site %}
-                    <div class="card h-100" style="margin-right:15px; margin-left:30px;">
+                    <div class="card h-100 carte_hacker carte_site" style="margin-right:15px; margin-left:30px;">
                         <div class="card-body" >
-                            <p><strong>Url: </strong>{{ row.0 }}</p>
-                            <p><strong>Nom de domaine: </strong>{{ row.1 }}</p>
-                            <p><strong>Site vulnérables : </strong>{{ row.2 }}</p>
+                            <div class="text-center">
+                                <p><strong>Nom de domaine: </strong>{{ row.1 }}</p>
+                                {% if row.2 == 0 %}
+                                    <p><strong style="background-color:red;"> Invulnérable </strong></p>
+                                {% else %}
+                                    <p><strong style="background-color:green;"> Vulnérable </strong></p>
+                                {% endif %}
+                                <a name="" id="" class="btn btn-success" href="{{row.0}}" role="button" style="background-color:rgb(23, 153, 11);">Aller sur le site</a>
+                            </div>
                         </div>
                     </div>
                 {% endfor %}
@@ -40,3 +59,5 @@
     </div>
 </body>
 <script src="{{ url_for('static', filename='js/hacker.js') }}"></script>
+<script src="{{ url_for('static', filename='js/database.js') }}"></script>
+
