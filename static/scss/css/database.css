@@ -100,4 +100,27 @@ a.err-link:hover {
   color: rgb(23, 153, 11);
 }
 
+html {
+  cursor: none;
+}
+
+body {
+  background-color: #1d1e22;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+#cursor-custom {
+  height: 10px;
+  width: 10px;
+  pointer-events: none;
+  position: fixed;
+  z-index: 20;
+  background: #00FF00;
+  border-radius: 50%;
+  box-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #fff, 0 0 70px #fff, 0 0 80px #fff, 0 0 100px #fff, 0 0 150px #fff;
+}
+
 /*# sourceMappingURL=database.css.map */
