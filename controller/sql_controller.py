@@ -49,8 +49,24 @@ def insert_site():
     user_input = data['user_input']
 
     # Effectuez les opérations souhaitées avec les données
-    print(user_input+" / "+get_domain_name(user_input))
     database.insert_site(user_input, get_domain_name(user_input))
+
+    response = {
+        'result': "Opérations effectuées avec succès"
+    }
+    return jsonify(response)
+
+
+@sql_blueprint.route('/sql_add_historique', methods=['POST'])
+def insert_historique():
+    # Récupérez les données soumises par le formulaire
+    data = request.get_json()
+    recherche = data['inputTextHistorique']
+    pageDepart = data['inputNumberHistorique']
+    nbRequete = data['inputNumberRequete']
+
+    # Effectuez les opérations souhaitées avec les données
+    database.insert_historique(recherche,pageDepart,nbRequete)
 
     response = {
         'result': "Opérations effectuées avec succès"
