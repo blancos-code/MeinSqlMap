@@ -50,19 +50,24 @@
                     <a class="popup_close" href="#" onclick="fermerPopup(2)">&times;</a>
                     <div class="popup_content">
                     <form>
+                        <div class="form-group" style="display:none;">
+                            <label for="idHistorique">Recherche</label>
+                            <input type="text" class="form-control" id="idHistorique">
+                        </div>
                         <div class="form-group">
-                            <label for="inputTextHistorique">Entrée utilisateur (string)</label>
+                            <label for="inputTextHistorique">Recherche</label>
                             <input type="text" class="form-control" id="inputTextHistorique" placeholder="Entrez votre texte ici">
                         </div>
                         <div class="form-group">
-                            <label for="inputNumberHistorique">Nombre 1 (entier)</label>
+                            <label for="inputNumberHistorique">Page de départ</label>
                             <input type="number" class="form-control" id="inputNumberHistorique" placeholder="Entrez un nombre entier">
                         </div>
                         <div class="form-group">
-                            <label for="inputNumberRequete">Nombre 2 (entier)</label>
+                            <label for="inputNumberRequete">Nombre de requete</label>
                             <input type="number" class="form-control" id="inputNumberRequete" placeholder="Entrez un autre nombre entier">
                         </div>
-                        <button type="submit" class="btn btn-primary" onclick="insertHistorique()">Envoyer</button>
+                        <button type="submit" id="submitButton" class="btn btn-primary" onclick="insertHistorique()">Envoyer</button>
+                        <button type="submit" id="modifyButton" class="btn btn-primary" onclick="editHistorique()">Modifier</button>
                     </form>
                     </div>
                 </div>
@@ -84,13 +89,14 @@
             <tbody>
                 {% for row in historique[page_start_historique:(page_start_historique + items_per_page)] %}
                 <tr>
-
                     <td class="td">{{ row.0 }}</td>
                     <td class="td">{{ row.1 }}</td>
-                    <td class="td">{{row.2 }}</td>
-                    <td class="td">{{row.3*10 }}</td>
+                    <td class="td">{{ row.2 }}</td>
+                    <td class="td">{{ row.3*10 }}</td>
                     <td class="td">{{ row.4 }}</td>
-                    <td class="td td-button"><button  type="button" class="btn-action-database">Editer</button></td>
+                    <td class="td td-button">
+                        <button type="button" class="btn-action-database" onclick="afficherPopup('2','{{row.0}}', '{{row.1}}', '{{row.2}}', '{{row.3}}','true')">Editer</button>
+                    </td>
                     <td class="td td-button"><button onclick="deleteHistorique({{ row.0 }})" type="button" class="btn-action-database">Supprimer</button></td>
                 </tr>
                 {% endfor %}

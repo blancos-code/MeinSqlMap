@@ -52,7 +52,6 @@ def insert_site(url, nom_de_domaine):
                 INSERT INTO `site` (`url`, `nom_de_domaine`, `isVulnerable`) VALUES
                            """ + '("' + url + '", "' + nom_de_domaine + '",' + '0' + ');')
             conn.commit()
-            print("Ajoute effectué avec succès: "+url+ " / "+nom_de_domaine)
             break
         except sqlite3.OperationalError as e:
             if "locked" in str(e):
@@ -75,11 +74,11 @@ def isInDatabase(table: str, element):
             return True
     return False  # L'élément n'a pas été trouvé dans la table 
 
+
 def insert_historique(recherche,page_depart,nb_requete):
     conn = sqlite3.connect('data/bdd.db')
     cursor = conn.cursor()
-    print("recherche: "+recherche+" page_depart: "+page_depart+" nb_requete: "+nb_requete)
-    
+
     for _ in range(100):
         try:
             cursor.execute("""
@@ -87,6 +86,35 @@ def insert_historique(recherche,page_depart,nb_requete):
                         """ + '("' + recherche + '",' + page_depart + ',' + nb_requete + ');'
                            )
             conn.commit()
+            break
+        except sqlite3.OperationalError as e:
+            if "locked" in str(e):
+                print("La base de données est verrouillée, nouvelle tentative...")
+                time.sleep(1)  # Attendre un peu avant de réessayer
+            else:
+                raise e
+    cursor.close()
+
+
+def edit_historique(index, recherche, page_depart, nb_requete):
+    conn = sqlite3.connect('data/bdd.db')
+    cursor = conn.cursor()
+
+    for _ in range(100):
+        try:
+            cursor.execute("""
+                UPDATE `historique` SET
+                `recherche` = ?,
+                `page_depart` = ?,
+                `nb_requete` = ?
+                WHERE `id` = ?;
+            """, (recherche, page_depart, nb_requete,index))
+            conn.commit()
+
+            if cursor.rowcount == 0:
+                print(f"Aucun historique trouvé avec l'index {index}")
+            else:
+                print(f"Mise à jour effectuée pour l'historique avec l'index {index}")
             break
         except sqlite3.OperationalError as e:
             if "locked" in str(e):

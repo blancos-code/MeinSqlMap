@@ -80,3 +80,23 @@ def insert_historique():
     return jsonify(response)
 
 
+@sql_blueprint.route('/sql_edit_historique', methods=['POST'])
+def edit_historique():
+    # Récupérez les données soumises par le formulaire
+    data = request.get_json()
+    idRecherche = data['idHistorique']
+    recherche = data['inputTextHistorique']
+    pageDepart = data['inputNumberHistorique']
+    nbRequete = data['inputNumberRequete']
+
+    print("id recherche: "+idRecherche)
+    # Effectuez les opérations souhaitées avec les données
+    database.edit_historique(idRecherche,recherche,pageDepart,nbRequete)
+
+    response = {
+        'result': "Opérations effectuées avec succès"
+    }
+    return jsonify(response)
+
+
+
