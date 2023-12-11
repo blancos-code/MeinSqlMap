@@ -58,9 +58,21 @@ a.err-link {
   color: white;
   letter-spacing: 10px;
   text-decoration: none;
+  margin-top: 2rem;
 }
 
-a.err-link:hover {
+a.popup-link {
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 1em;
+  font-family: "Rajdhani";
+  font-weight: 500;
+  color: black;
+  letter-spacing: 10px;
+  text-decoration: none;
+}
+
+a.err-link:hover, a.popup-link:hover {
   text-transform: uppercase;
   font-size: 1em;
   font-family: "Rajdhani";
