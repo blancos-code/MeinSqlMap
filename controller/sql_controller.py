@@ -35,6 +35,12 @@ def display(page=1):
 
     return render_template("sql.html", database_data=data, site=data['site'], historique=historique_data)
 
+@sql_blueprint.route("/sql/history/delete/<int:id_history>", methods=["GET", "POST"])
+def delete_history(id_history):
+    database.delete(id_history)
+
+    return redirect(url_for('database_blueprint.display'))
+
 
 def get_domain_name(url: str) -> str:
     parsed_uri = urlparse(url)

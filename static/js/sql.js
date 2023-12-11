@@ -64,3 +64,15 @@ function insertHistorique() {
       console.error("Une erreur s'est produite:", error);
     });
   }
+
+function deleteHistorique(id) {
+
+// Appeler l'API avec les données soumises
+  fetch("/sql/history/delete/" + id, {
+      method: "POST",
+
+  }).then(r => {
+        console.log(r);
+        window.location.reload();
+  });
+}

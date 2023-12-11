@@ -97,4 +97,10 @@ def insert_historique(recherche,page_depart,nb_requete):
             cursor.close()
 
 
-
+def delete(id_historique):
+    conn = sqlite3.connect('data/bdd.db')
+    cursor = conn.cursor()
+    cursor.execute(f"DELETE FROM historique WHERE id={id_historique}")
+    conn.commit()
+    conn.close()
+    return None

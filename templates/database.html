@@ -17,6 +17,7 @@
            <table class="table">
             <thead>
                 <tr>
+                    <td class="td">Id</td>
                     <td class="td">Recherche</td>
                     <td class="td">Page de départ</td>
                     <td class="td">Nombre de site</td>
@@ -29,12 +30,14 @@
             <tbody>
                 {% for row in historique[page_start_historique:(page_start_historique + items_per_page)] %}
                 <tr>
+
+                    <td class="td">{{ row.0 }}</td>
                     <td class="td">{{ row.1 }}</td>
                     <td class="td">{{row.2 }}</td>
                     <td class="td">{{row.3*10 }}</td>
                     <td class="td">{{ row.4 }}</td>
-                    <td class="td td-button"><button type="button" class="btn-action-database">Editer</button></td>
-                    <td class="td td-button"><button type="button" class="btn-action-database">Supprimer</button></td>
+                    <td class="td td-button"><button  type="button" class="btn-action-database">Editer</button></td>
+                    <td class="td td-button"><button onclick="deleteHistorique({{ row.0 }})" type="button" class="btn-action-database">Supprimer</button></td>
                 </tr>
                 {% endfor %}
             </tbody>
@@ -90,6 +93,7 @@
         </div>
     </div>
 </body>
+<script src="{{ url_for('static', filename='js/sql.js') }}"></script>
 <script src="{{ url_for('static', filename='js/hacker.js') }}"></script>
 <script src="{{ url_for('static', filename='js/database.js') }}"></script>
 
