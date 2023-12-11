@@ -11,7 +11,7 @@
             <h1 style="color:white; text-align:center; padding-top:3%; margin-bottom:5%;">DATABASE</h1>
             <a href="/" class="err-link mb-5">[home]</a>
             <h2 style="color:white;">Historique</h2>
-            {% set items_per_page = 7 %}
+            {% set items_per_page = 50 %}
             {% set current_page = request.args.get('page', 1)|int %}
             {% set page_start_historique = (current_page - 1) * items_per_page %}
            <table class="table">
@@ -41,7 +41,7 @@
            </table>
 
            <h2 style="color:white;">Sites</h2>
-           {% set items_per_page = 7 %}
+           {% set items_per_page = 50 %}
            {% set current_page = request.args.get('page', 1)|int %}
            {% set page_start_historique = (current_page - 1) * items_per_page %}
           <table class="table">
@@ -68,8 +68,8 @@
            </tbody>
           </table>
 
-
-            {# <h2 style="color:white;">Sites</h2>
+{# 
+            <h2 style="color:white;">Sites</h2>
             <div class="row row-cols-1 row-cols-md-4 g-4" style="margin-right:30px; margin-left:30px;">
                 {% for row in site %}
                     <div class="card h-100 carte_hacker carte_site" style="margin-right:15px; margin-left:30px;">
