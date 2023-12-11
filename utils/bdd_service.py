@@ -60,8 +60,8 @@ def insert_site(url, nom_de_domaine):
                 time.sleep(1)  # Attendre un peu avant de réessayer
             else:
                 raise e
-        finally:
-            cursor.close()
+    
+    cursor.close()
 
 
 def isInDatabase(table: str, element):
@@ -78,7 +78,8 @@ def isInDatabase(table: str, element):
 def insert_historique(recherche,page_depart,nb_requete):
     conn = sqlite3.connect('data/bdd.db')
     cursor = conn.cursor()
-
+    print("recherche: "+recherche+" page_depart: "+page_depart+" nb_requete: "+nb_requete)
+    
     for _ in range(100):
         try:
             cursor.execute("""
@@ -93,8 +94,7 @@ def insert_historique(recherche,page_depart,nb_requete):
                 time.sleep(1)  # Attendre un peu avant de réessayer
             else:
                 raise e
-        finally:
-            cursor.close()
+    cursor.close()
 
 
 

@@ -3,6 +3,7 @@
 
 <body>
     <div style="position: relative;">
+        
         <div class="container" style="position: relative; z-index: 2;">
             <h1 style="color:black; text-align:center; padding-top:3%; margin-bottom:5%;">DATABASE</h1>
 
@@ -94,9 +95,9 @@
                             <div class="text-center">
                                 <p><strong>Nom de domaine: </strong>{{ row.1 }}</p>
                                 {% if row.2 == 0 %}
-                                    <p><strong style="background-color:red;"> Invulnérable </strong></p>
+                                    <p><strong style="background-color:green;"> Invulnérable </strong></p>
                                 {% else %}
-                                    <p><strong style="background-color:green;"> Vulnérable </strong></p>
+                                    <p><strong style="background-color:red;"> Vulnérable </strong></p>
                                 {% endif %}
                                 <a name="" id="" class="btn btn-success" href="{{row.0}}" role="button" style="background-color:rgb(23, 153, 11);">Aller sur le site</a>
                             </div>
@@ -109,4 +110,4 @@
 </body>
 {# <script src="{{ url_for('static', filename='js/hacker.js') }}"></script> #}
 <script src="{{ url_for('static', filename='js/database.js') }}"></script>
-<script src="{{ url_for('static', filename='js/sql.js') }}"></script>
+<script src="{{ url_for('static', filename='js/sql_functions.js') }}"></script>
