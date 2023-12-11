@@ -6,26 +6,16 @@
     <div class="relative">
         <canvas class="background-hacker">
         </canvas>
-        
-
-
+        <div id="cursor-custom"></div>
         <div class="container">
             <h1 style="color:white; text-align:center; padding-top:3%; margin-bottom:5%;">DATABASE</h1>
-            <a href="/" class="err-link mb-5">[home]</a>
+            <a href="/" class="err-link mb-5">[home]</a><a href="/search" class="err-link mb-5">[search]</a>
             <h2 style="color:white;">Historique</h2>
             {% set items_per_page = 50 %}
             {% set current_page = request.args.get('page', 1)|int %}
             {% set page_start_historique = (current_page - 1) * items_per_page %}
 
-            <div class="btn_container">
-                <div class="row">
-                    <div class="col-md-4">
-                        <button class="btn btn-primary" onclick="afficherPopup(1)">Ajouter un site</button>
-                    </div>
-                    <div class="col-md-4">
-                        <button class="btn btn-primary" onclick="afficherPopup(2)">Ajouter dans l'historique</button>
-                    </div>
-                </div>
+            <div class="btn_container"><a onclick="afficherPopup(1)" class="err-link mb-5">[Ajouter un site]</a><a onclick="afficherPopup(2)" class="err-link mb-5">[Ajouter dans l'historique]</a>
             </div>
             
             <div id="popup1" class="popup_overlay">
@@ -38,7 +28,7 @@
                                 <label for="inputTextSite">URL du site (entière)</label>
                                 <input type="text" class="form-control" id="inputTextSite" placeholder="Entrez votre texte ici">
                             </div>
-                            <button type="submit" class="btn btn-primary" onclick="insertSite()">Envoyer</button>
+                            <a onclick="insertSite()" class="popup-link">[Envoyer]</a>
                         </form>
                     </div>
                 </div>
@@ -125,7 +115,7 @@
                    {% else %}
                         <td><strong class="text-green"> Vulnérable </strong></td>
                     {% endif %}
-                   <td><a name="" id="" class="btn btn-success" href="{{row.0}}" role="button" target="_blank">Aller sur le site</a></td>
+                   <td><a name="aller sur le site" id="" class="btn btn-success" href="{{row.0}}" role="button" target="_blank">Aller sur le site</a></td>
                </tr>
                {% endfor %}
            </tbody>
