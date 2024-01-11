@@ -55,7 +55,10 @@ def insert_site():
     user_input = data['user_input']
 
     # Effectuez les opérations souhaitées avec les données
-    database.insert_site(user_input, get_domain_name(user_input))
+    if("www" in user_input):
+        database.insert_site(user_input, get_domain_name(user_input))
+    else:
+        database.insert_site(user_input, user_input)
 
     response = {
         'result': "Opérations effectuées avec succès"

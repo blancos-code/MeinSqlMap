@@ -17,10 +17,14 @@ function afficherPopup(index,indexRecherche,recherche,page_depart,nb_site,isModi
 
     if (isModifying) {
       submitButton.style.display = "none"; // Cacher le bouton "Envoyer"
+      submitButton.disabled = true;
       modifyButton.style.display = "block"; // Afficher le bouton "Modifier"
+      modifyButton.disabled = false;
     } else {
       submitButton.style.display = "block"; // Afficher le bouton "Envoyer"
+      submitButton.disabled = false;
       modifyButton.style.display = "none"; // Cacher le bouton "Modifier"
+      modifyButton.disabled = true;
     }
     
     popup.style.display = "flex";
