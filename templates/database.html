@@ -15,7 +15,7 @@
             {% set current_page = request.args.get('page', 1)|int %}
             {% set page_start_historique = (current_page - 1) * items_per_page %}
 
-            <div class="btn_container"><a onclick="afficherPopup(1)" class="err-link mb-5">[Ajouter un site]</a><a onclick="afficherPopup(2)" class="err-link mb-5">[Ajouter dans l'historique]</a>
+            <div class="btn_container"><a onclick="afficherPopup(2)" class="err-link mb-5">[Ajouter dans l'historique]</a>
             </div>
             
             <div id="popup1" class="popup_overlay">
@@ -94,6 +94,7 @@
            </table>
 
            <h2 style="color:white;">Sites</h2>
+           <div class="btn_container"><a onclick="afficherPopup(1)" class="err-link mb-5">[Ajouter un site]</a></div>
            {% set items_per_page = 50 %}
            {% set current_page = request.args.get('page', 1)|int %}
            {% set page_start_historique = (current_page - 1) * items_per_page %}
