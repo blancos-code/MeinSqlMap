@@ -56,7 +56,7 @@ def insert_site(url, nom_de_domaine):
         except sqlite3.OperationalError as e:
             if "locked" in str(e):
                 print("La base de données est verrouillée, nouvelle tentative...")
-                time.sleep(1)  # Attendre un peu avant de réessayer
+                # time.sleep(1)  # Attendre un peu avant de réessayer
             else:
                 raise e
     
@@ -90,7 +90,7 @@ def insert_historique(recherche,page_depart,nb_requete):
         except sqlite3.OperationalError as e:
             if "locked" in str(e):
                 print("La base de données est verrouillée, nouvelle tentative...")
-                time.sleep(1)  # Attendre un peu avant de réessayer
+                # time.sleep(1)  # Attendre un peu avant de réessayer
             else:
                 raise e
     cursor.close()

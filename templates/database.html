@@ -28,7 +28,7 @@
                                 <label for="inputTextSite">URL du site (entière)</label>
                                 <input type="text" class="form-control" id="inputTextSite" placeholder="Entrez votre texte ici">
                             </div>
-                            <a onclick="insertSite()" class="popup-link">[Envoyer]</a>
+                            <a onclick="insertSite(); fermerPopup(1);" class="popup-link">[Envoyer]</a>
                         </form>
                     </div>
                 </div>
@@ -56,8 +56,8 @@
                             <label for="inputNumberRequete">Nombre de requete</label>
                             <input type="number" class="form-control" id="inputNumberRequete" placeholder="Entrez un autre nombre entier">
                         </div>
-                        <button type="submit" id="submitButton" class="btn btn-primary" onclick="insertHistorique()">Envoyer</button>
-                        <button type="submit" id="modifyButton" class="btn btn-primary" onclick="editHistorique()">Modifier</button>
+                        <button type="submit" id="submitButton" class="btn btn-primary" onclick="insertHistorique(); fermerPopup(2);">Envoyer</button>
+                        <button type="submit" id="modifyButton" class="btn btn-primary" onclick="editHistorique(); fermerPopup(2);">Modifier</button>
                     </form>
                     </div>
                 </div>
